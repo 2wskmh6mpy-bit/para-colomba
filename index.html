@@ -2,330 +2,712 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
 <title>Para mi pollito ❤️</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 <style>
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500&display=swap');
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+:root{
+    --bg:#0b090c;
+    --bg2:#121015;
+    --card:rgba(255,255,255,.045);
+    --line:rgba(255,255,255,.12);
+    --white:#f8f5f6;
+    --soft:#cfc5ca;
+    --accent:#dca9b9;
+    --accent2:#efd1da;
 }
 
-html {
-    scroll-behavior: smooth;
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
-body {
-    background: #0d0b0e;
-    color: #f8f4f2;
-    font-family: 'Montserrat', sans-serif;
-    overflow-x: hidden;
+html{
+    scroll-behavior:smooth;
 }
 
-/* FONDO */
-
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
+body{
     background:
-        radial-gradient(circle at 20% 20%, rgba(160,120,140,0.12), transparent 30%),
-        radial-gradient(circle at 80% 70%, rgba(190,150,170,0.08), transparent 35%);
-    pointer-events: none;
-    z-index: -2;
+        radial-gradient(circle at 50% 0%, rgba(172,111,139,.12), transparent 35%),
+        radial-gradient(circle at 20% 70%, rgba(120,90,130,.08), transparent 30%),
+        var(--bg);
+    color:var(--white);
+    font-family:'Montserrat',sans-serif;
+    overflow-x:hidden;
 }
 
-/* ESTRELLAS */
-
-.estrellas {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: -1;
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background-image:
+        radial-gradient(circle, rgba(255,255,255,.55) 1px, transparent 1px);
+    background-size:90px 90px;
+    opacity:.12;
+    z-index:-1;
 }
 
-.estrella {
-    position: absolute;
-    width: 2px;
-    height: 2px;
-    background: white;
-    border-radius: 50%;
-    opacity: 0.5;
-    animation: brillo 4s infinite ease-in-out;
+/* =========================
+   GENERAL
+========================= */
+
+section{
+    width:100%;
+    max-width:1050px;
+    margin:auto;
+    padding:120px 24px;
 }
 
-@keyframes brillo {
-    0%,100% { opacity: 0.2; }
-    50% { opacity: 0.8; }
+.eyebrow{
+    font-size:11px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:18px;
 }
 
-/* PORTADA */
-
-.hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 30px;
-    position: relative;
+h2{
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(42px,7vw,72px);
+    font-weight:400;
+    line-height:.95;
+    margin-bottom:25px;
 }
 
-.hero-content {
-    max-width: 700px;
-    animation: aparecer 2s ease;
+.section-text{
+    color:var(--soft);
+    font-size:15px;
+    line-height:1.9;
+    max-width:650px;
 }
 
-.pequeno {
-    font-size: 12px;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    opacity: 0.65;
-    margin-bottom: 25px;
+.center{
+    text-align:center;
+    margin-left:auto;
+    margin-right:auto;
 }
 
-h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(60px, 13vw, 115px);
-    font-weight: 300;
-    line-height: 0.9;
-    margin-bottom: 25px;
+.reveal{
+    opacity:0;
+    transform:translateY(35px);
+    transition:opacity 1s ease, transform 1s ease;
 }
 
-.hero p {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 25px;
-    font-style: italic;
-    opacity: 0.8;
+.reveal.visible{
+    opacity:1;
+    transform:translateY(0);
 }
 
-.fecha {
-    margin-top: 35px;
-    font-size: 12px;
-    letter-spacing: 4px;
-    opacity: 0.55;
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:40px 24px;
+    position:relative;
 }
 
-.boton {
-    display: inline-block;
-    margin-top: 45px;
-    padding: 14px 35px;
-    border: 1px solid rgba(255,255,255,0.35);
-    border-radius: 40px;
-    color: white;
-    text-decoration: none;
-    font-size: 12px;
-    letter-spacing: 3px;
-    transition: 0.4s;
+.hero-small{
+    font-size:11px;
+    letter-spacing:5px;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:30px;
 }
 
-.boton:hover {
-    background: white;
-    color: #0d0b0e;
+.hero h1{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:400;
+    font-size:clamp(75px,17vw,155px);
+    line-height:.75;
+    letter-spacing:-5px;
+    margin-bottom:35px;
 }
 
-/* SECCIONES */
-
-section {
-    min-height: 100vh;
-    padding: 110px 25px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.hero-subtitle{
+    max-width:520px;
+    color:var(--soft);
+    font-size:14px;
+    line-height:1.9;
+    margin-bottom:35px;
 }
 
-.contenido {
-    max-width: 900px;
-    width: 100%;
-    text-align: center;
+.date{
+    font-size:12px;
+    letter-spacing:5px;
+    color:#b9adb2;
+    margin-bottom:45px;
 }
 
-.numero {
-    font-size: 11px;
-    letter-spacing: 4px;
-    opacity: 0.45;
-    margin-bottom: 20px;
+.enter{
+    border:1px solid rgba(255,255,255,.2);
+    background:rgba(255,255,255,.035);
+    color:white;
+    padding:15px 30px;
+    border-radius:100px;
+    font-family:'Montserrat',sans-serif;
+    font-size:11px;
+    letter-spacing:3px;
+    cursor:pointer;
+    transition:.35s;
+    backdrop-filter:blur(10px);
 }
 
-h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 400;
-    font-size: clamp(42px, 8vw, 75px);
-    margin-bottom: 35px;
+.enter:hover{
+    background:rgba(255,255,255,.1);
+    border-color:var(--accent);
+    transform:translateY(-3px);
 }
 
-.texto {
-    max-width: 650px;
-    margin: auto;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 25px;
-    line-height: 1.7;
-    opacity: 0.82;
+.scroll{
+    position:absolute;
+    bottom:25px;
+    font-size:9px;
+    letter-spacing:3px;
+    color:#776e73;
 }
 
-/* FOTO */
+/* =========================
+   COUNTER
+========================= */
 
-.foto {
-    width: 100%;
-    max-width: 650px;
-    height: 420px;
-    margin: 45px auto;
-    border-radius: 4px;
-    background: linear-gradient(
-        135deg,
-        #211b21,
-        #151216
-    );
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgba(255,255,255,0.35);
-    font-size: 11px;
-    letter-spacing: 3px;
+.counter-wrap{
+    margin-top:45px;
 }
 
-/* TARJETAS */
-
-.tarjetas {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
-    gap: 15px;
-    margin-top: 50px;
+.counter{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:14px;
 }
 
-.tarjeta {
-    padding: 35px 20px;
-    border: 1px solid rgba(255,255,255,0.1);
-    background: rgba(255,255,255,0.025);
-    transition: 0.4s;
+.counter-box{
+    min-width:95px;
+    padding:18px 12px;
+    border:1px solid var(--line);
+    background:var(--card);
+    backdrop-filter:blur(12px);
+    border-radius:18px;
 }
 
-.tarjeta:hover {
-    transform: translateY(-6px);
-    border-color: rgba(255,255,255,0.3);
+.counter-number{
+    font-family:'Cormorant Garamond',serif;
+    font-size:36px;
 }
 
-.tarjeta h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 26px;
-    font-weight: 400;
+.counter-label{
+    margin-top:5px;
+    color:#93898e;
+    font-size:9px;
+    letter-spacing:2px;
+    text-transform:uppercase;
 }
 
-/* DISTANCIA */
+/* =========================
+   PHOTOS
+========================= */
 
-.distancia {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    margin: 60px 0;
+.photo-grid{
+    display:grid;
+    grid-template-columns:1.15fr .85fr;
+    gap:18px;
+    margin-top:45px;
 }
 
-.persona {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 30px;
+.photo-placeholder{
+    min-height:390px;
+    border-radius:25px;
+    border:1px solid var(--line);
+    background:
+        linear-gradient(145deg,rgba(255,255,255,.06),rgba(255,255,255,.015));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:30px;
+    overflow:hidden;
+    position:relative;
 }
 
-.linea {
-    width: 120px;
-    height: 1px;
-    background: linear-gradient(
+.photo-placeholder.small{
+    min-height:185px;
+}
+
+.photo-placeholder span{
+    color:#81767c;
+    font-size:10px;
+    letter-spacing:2px;
+    line-height:2;
+}
+
+.photo-placeholder img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    position:absolute;
+    inset:0;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+    margin-top:45px;
+}
+
+.card{
+    border:1px solid var(--line);
+    background:var(--card);
+    border-radius:22px;
+    padding:28px 24px;
+    min-height:180px;
+    transition:.4s;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+    border-color:rgba(220,169,185,.35);
+}
+
+.card-number{
+    font-size:10px;
+    letter-spacing:2px;
+    color:var(--accent);
+    margin-bottom:25px;
+}
+
+.card h3{
+    font-family:'Cormorant Garamond',serif;
+    font-size:29px;
+    font-weight:500;
+    margin-bottom:10px;
+}
+
+.card p{
+    color:#aaa0a5;
+    font-size:12px;
+    line-height:1.7;
+}
+
+/* =========================
+   DISTANCE
+========================= */
+
+.distance{
+    text-align:center;
+    padding:140px 25px;
+}
+
+.distance-line{
+    width:100%;
+    max-width:500px;
+    height:1px;
+    background:linear-gradient(
         to right,
         transparent,
-        rgba(255,255,255,0.7),
+        rgba(255,255,255,.25),
         transparent
     );
+    margin:35px auto;
 }
 
-/* CANCIÓN */
-
-.cancion {
-    margin: 45px auto;
-    padding: 35px;
-    max-width: 500px;
-    border: 1px solid rgba(255,255,255,0.12);
+.names{
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(38px,8vw,70px);
 }
 
-.cancion h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 34px;
-    font-weight: 400;
+.heart{
+    color:var(--accent);
+    font-size:20px;
+    margin:20px;
 }
 
-.cancion p {
-    opacity: 0.5;
-    margin-top: 8px;
+.distance p{
+    max-width:600px;
+    margin:auto;
+    color:#aaa0a5;
+    line-height:1.9;
+    font-size:14px;
 }
 
-/* CARTA */
+/* =========================
+   SONG
+========================= */
 
-.carta {
-    max-width: 700px;
-    margin: auto;
-    padding: 50px 30px;
-    background: rgba(255,255,255,0.025);
-    border: 1px solid rgba(255,255,255,0.08);
-    text-align: left;
+.song-card{
+    max-width:750px;
+    margin:45px auto 0;
+    border:1px solid var(--line);
+    background:rgba(255,255,255,.035);
+    border-radius:25px;
+    padding:25px;
 }
 
-.carta p {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 23px;
-    line-height: 1.8;
-    margin-bottom: 25px;
+.song-info{
+    padding:20px 10px 25px;
 }
 
-/* SORPRESA */
-
-.sorpresa {
-    margin-top: 50px;
+.song-title{
+    font-family:'Cormorant Garamond',serif;
+    font-size:38px;
 }
 
-#mensaje {
-    display: none;
-    margin-top: 40px;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 30px;
-    line-height: 1.5;
-    animation: aparecer 1.5s ease;
+.artist{
+    color:#958b90;
+    font-size:11px;
+    letter-spacing:2px;
+    margin-top:7px;
 }
 
-@keyframes aparecer {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
+.video{
+    position:relative;
+    width:100%;
+    aspect-ratio:16/9;
+    border-radius:17px;
+    overflow:hidden;
+}
+
+.video iframe{
+    width:100%;
+    height:100%;
+    border:0;
+}
+
+.youtube-button{
+    display:inline-block;
+    margin-top:22px;
+    color:white;
+    text-decoration:none;
+    font-size:10px;
+    letter-spacing:2px;
+    border-bottom:1px solid rgba(255,255,255,.3);
+    padding-bottom:5px;
+}
+
+/* =========================
+   LETTER
+========================= */
+
+.letter-box{
+    max-width:720px;
+    margin:45px auto 0;
+    text-align:center;
+}
+
+.envelope{
+    border:1px solid var(--line);
+    border-radius:25px;
+    padding:55px 30px;
+    background:
+        radial-gradient(circle at top,rgba(220,169,185,.1),transparent 50%),
+        rgba(255,255,255,.035);
+}
+
+.envelope-icon{
+    font-size:30px;
+    margin-bottom:20px;
+}
+
+.envelope p{
+    color:#aaa0a5;
+    font-size:13px;
+    line-height:1.8;
+}
+
+.open-letter{
+    margin-top:30px;
+    padding:14px 25px;
+    border:1px solid rgba(220,169,185,.4);
+    border-radius:100px;
+    background:transparent;
+    color:white;
+    cursor:pointer;
+    font-family:'Montserrat',sans-serif;
+    font-size:10px;
+    letter-spacing:2px;
+    transition:.3s;
+}
+
+.open-letter:hover{
+    background:rgba(220,169,185,.12);
+}
+
+/* =========================
+   THINGS TO LIVE
+========================= */
+
+.future{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+    margin-top:45px;
+}
+
+.future-item{
+    padding:28px;
+    border-left:1px solid rgba(220,169,185,.45);
+    background:rgba(255,255,255,.025);
+}
+
+.future-item span{
+    font-size:22px;
+}
+
+.future-item h3{
+    font-family:'Cormorant Garamond',serif;
+    font-size:27px;
+    font-weight:500;
+    margin:12px 0 7px;
+}
+
+.future-item p{
+    color:#968c91;
+    font-size:12px;
+    line-height:1.7;
+}
+
+/* =========================
+   SURPRISE
+========================= */
+
+.surprise{
+    text-align:center;
+    padding-bottom:150px;
+}
+
+.secret-button{
+    margin-top:35px;
+    padding:17px 32px;
+    border-radius:100px;
+    background:rgba(220,169,185,.08);
+    color:white;
+    border:1px solid rgba(220,169,185,.35);
+    cursor:pointer;
+    font-family:'Montserrat',sans-serif;
+    font-size:10px;
+    letter-spacing:3px;
+    transition:.35s;
+}
+
+.secret-button:hover{
+    transform:scale(1.04);
+    background:rgba(220,169,185,.14);
+}
+
+.secret{
+    max-width:600px;
+    margin:35px auto 0;
+    padding:35px;
+    border:1px solid var(--line);
+    border-radius:22px;
+    background:rgba(255,255,255,.035);
+    display:none;
+}
+
+.secret.show{
+    display:block;
+    animation:fadeUp .8s ease forwards;
+}
+
+.secret p{
+    font-family:'Cormorant Garamond',serif;
+    font-size:30px;
+    line-height:1.25;
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(20px);
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+    to{
+        opacity:1;
+        transform:translateY(0);
     }
 }
 
-/* FINAL */
+/* =========================
+   FOOTER
+========================= */
 
-.final {
-    min-height: 90vh;
+footer{
+    text-align:center;
+    padding:50px 20px 80px;
+    border-top:1px solid rgba(255,255,255,.07);
 }
 
-.final h2 {
-    margin-bottom: 20px;
+.footer-big{
+    font-family:'Cormorant Garamond',serif;
+    font-size:50px;
+    margin-bottom:10px;
 }
 
-.firma {
-    margin-top: 45px;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 30px;
-    font-style: italic;
+footer p{
+    color:#776e73;
+    font-size:10px;
+    letter-spacing:2px;
 }
 
-.corazon {
-    font-size: 25px;
-    margin-top: 30px;
+/* =========================
+   MODAL LETTER
+========================= */
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(5,4,6,.88);
+    backdrop-filter:blur(15px);
+    z-index:100;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.modal.show{
+    display:flex;
+    animation:fade .5s ease;
+}
+
+.modal-content{
+    max-width:680px;
+    width:100%;
+    max-height:85vh;
+    overflow:auto;
+    background:#151116;
+    border:1px solid var(--line);
+    border-radius:25px;
+    padding:45px 30px;
+    position:relative;
+}
+
+.close{
+    position:absolute;
+    right:20px;
+    top:15px;
+    background:none;
+    border:0;
+    color:#aaa;
+    font-size:22px;
+    cursor:pointer;
+}
+
+.letter-title{
+    font-family:'Cormorant Garamond',serif;
+    font-size:42px;
+    margin-bottom:25px;
+}
+
+.letter-text{
+    color:#c5bcc0;
+    font-family:'Cormorant Garamond',serif;
+    font-size:22px;
+    line-height:1.6;
+}
+
+.signature{
+    margin-top:30px;
+    color:var(--accent);
+    font-family:'Cormorant Garamond',serif;
+    font-size:27px;
+}
+
+@keyframes fade{
+    from{opacity:0}
+    to{opacity:1}
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:750px){
+
+    section{
+        padding:90px 20px;
+    }
+
+    .hero h1{
+        letter-spacing:-3px;
+    }
+
+    .photo-grid{
+        grid-template-columns:1fr;
+    }
+
+    .photo-placeholder{
+        min-height:330px;
+    }
+
+    .photo-placeholder.small{
+        min-height:250px;
+    }
+
+    .cards{
+        grid-template-columns:1fr;
+    }
+
+    .future{
+        grid-template-columns:1fr;
+    }
+
+    .counter{
+        gap:8px;
+    }
+
+    .counter-box{
+        min-width:75px;
+        padding:15px 8px;
+    }
+
+    .counter-number{
+        font-size:28px;
+    }
+
+    .counter-label{
+        font-size:7px;
+    }
+
+    .song-card{
+        padding:15px;
+    }
+
+    .letter-text{
+        font-size:20px;
+    }
+
+}
+
+@media(prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+        scroll-behavior:auto !important;
+        animation:none !important;
+        transition:none !important;
+    }
+
 }
 
 </style>
@@ -333,426 +715,727 @@ h2 {
 
 <body>
 
-<div class="estrellas">
+<!-- =========================
+     PORTADA
+========================= -->
 
-    <div class="estrella" style="top:10%;left:15%;"></div>
-    <div class="estrella" style="top:25%;left:75%;"></div>
-    <div class="estrella" style="top:40%;left:30%;"></div>
-    <div class="estrella" style="top:65%;left:80%;"></div>
-    <div class="estrella" style="top:80%;left:20%;"></div>
-    <div class="estrella" style="top:55%;left:55%;"></div>
-    <div class="estrella" style="top:15%;left:90%;"></div>
-    <div class="estrella" style="top:85%;left:65%;"></div>
+<header class="hero">
 
-</div>
+    <div class="hero-small">
+        para alguien muy especial
+    </div>
 
+    <h1>
+        Mi pollito
+    </h1>
 
-<!-- PORTADA -->
+    <p class="hero-subtitle">
+        Hay personas que llegan a tu vida sin avisar
+        y terminan convirtiéndose en una de las partes
+        más bonitas de ella.
+    </p>
 
-<section class="hero">
+    <div class="date">
+        22 · 08 · 2026
+    </div>
 
-<div class="hero-content">
+    <button class="enter" onclick="document.getElementById('historia').scrollIntoView()">
+        ENTRAR ✨
+    </button>
 
-<div class="pequeno">
-PARA ALGUIEN MUY ESPECIAL
-</div>
+    <div class="scroll">
+        DESLIZA HACIA ABAJO
+    </div>
 
-<h1>
-Mi pollito
-</h1>
-
-<p>
-Tengo algo preparado para ti...
-</p>
-
-<div class="fecha">
-22 · 08 · 2026
-</div>
-
-<a href="#historia" class="boton">
-ENTRAR ✨
-</a>
-
-</div>
-
-</section>
+</header>
 
 
-<!-- HISTORIA -->
+<!-- =========================
+     HISTORIA
+========================= -->
 
-<section id="historia">
+<section id="historia" class="reveal">
 
-<div class="contenido">
+    <div class="eyebrow">
+        01 · nuestra historia
+    </div>
 
-<div class="numero">
-01 — NUESTRA HISTORIA
-</div>
+    <h2>
+        Y así comenzó<br>
+        nuestro capítulo.
+    </h2>
 
-<h2>
-El comienzo
-</h2>
+    <p class="section-text">
+        El 22 de agosto de 2026 dejamos de ser simplemente
+        dos personas que se estaban conociendo y comenzamos
+        oficialmente nuestra historia.
+        <br><br>
+        Y aunque ha pasado poquito tiempo,
+        siento que contigo han pasado muchísimas cosas bonitas.
+    </p>
 
-<p class="texto">
+    <div class="photo-grid">
 
-El 22 de agosto de 2026 comenzó oficialmente nuestra historia.
+        <div class="photo-placeholder">
+            <span>
+                FOTO PRINCIPAL<br><br>
+                AQUÍ IRÁ UNA FOTO<br>
+                DE NOSOTROS ❤️
+            </span>
+        </div>
 
-Puede que haya pasado solamente un mes,
-pero contigo siento que cada día ha tenido algo especial.
+        <div>
 
-</p>
+            <div class="photo-placeholder small">
+                <span>
+                    FOTO 02<br>
+                    UN RECUERDO
+                </span>
+            </div>
 
-<div class="foto">
-AQUÍ IRÁ NUESTRA PRIMERA FOTO ❤️
-</div>
+            <div style="height:18px"></div>
 
-</div>
+            <div class="photo-placeholder small">
+                <span>
+                    FOTO 03<br>
+                    OTRO MOMENTO
+                </span>
+            </div>
 
-</section>
+        </div>
 
-
-<!-- UN MES -->
-
-<section>
-
-<div class="contenido">
-
-<div class="numero">
-02 — UN MES CONTIGO
-</div>
-
-<h2>
-Un mes.
-</h2>
-
-<p class="texto">
-
-Un mes puede parecer poco tiempo,
-pero ha sido suficiente para darme cuenta
-de lo feliz que me haces cada día.
-
-Y lo más bonito...
-
-es pensar en todos los meses que todavía nos quedan.
-
-</p>
-
-</div>
+    </div>
 
 </section>
 
 
-<!-- COSAS QUE AMO -->
+<!-- =========================
+     CONTADOR
+========================= -->
 
-<section>
+<section class="reveal">
 
-<div class="contenido">
+    <div class="eyebrow center">
+        02 · nuestro tiempo
+    </div>
 
-<div class="numero">
-03 — LO QUE ME ENCANTA DE TI
-</div>
+    <h2 class="center">
+        Un mes contigo.
+    </h2>
 
-<h2>
-Todo de ti.
-</h2>
+    <p class="section-text center">
+        Y esto es solamente el comienzo.
+    </p>
 
-<div class="tarjetas">
+    <div class="counter-wrap">
 
-<div class="tarjeta">
-<h3>Tu sonrisa</h3>
-</div>
+        <div class="counter">
 
-<div class="tarjeta">
-<h3>Tu corazón infinito</h3>
-</div>
+            <div class="counter-box">
+                <div class="counter-number" id="months">0</div>
+                <div class="counter-label">meses</div>
+            </div>
 
-<div class="tarjeta">
-<h3>Tu forma de dar cariño</h3>
-</div>
+            <div class="counter-box">
+                <div class="counter-number" id="days">0</div>
+                <div class="counter-label">días</div>
+            </div>
 
-<div class="tarjeta">
-<h3>Tu forma de recibirlo</h3>
-</div>
+            <div class="counter-box">
+                <div class="counter-number" id="hours">0</div>
+                <div class="counter-label">horas</div>
+            </div>
 
-<div class="tarjeta">
-<h3>Tu carita hermosa</h3>
-</div>
+            <div class="counter-box">
+                <div class="counter-number" id="minutes">0</div>
+                <div class="counter-label">minutos</div>
+            </div>
 
-<div class="tarjeta">
-<h3>Todo de ti</h3>
-</div>
+            <div class="counter-box">
+                <div class="counter-number" id="seconds">0</div>
+                <div class="counter-label">segundos</div>
+            </div>
 
-</div>
+        </div>
 
-</div>
-
-</section>
-
-
-<!-- DISTANCIA -->
-
-<section>
-
-<div class="contenido">
-
-<div class="numero">
-04 — A PESAR DE LA DISTANCIA
-</div>
-
-<h2>
-Kilómetros.
-</h2>
-
-<p class="texto">
-
-Ahora hay kilómetros entre nosotros,
-pero eso no cambia lo cerca que te siento.
-
-</p>
-
-<div class="distancia">
-
-<div class="persona">
-Fran
-</div>
-
-<div class="linea"></div>
-
-<div class="persona">
-Colomba ❤️
-</div>
-
-</div>
-
-<p class="texto">
-
-La distancia es solamente una parte de nuestra historia.
-
-No es el final de ella.
-
-</p>
-
-</div>
+    </div>
 
 </section>
 
 
-<!-- CANCIÓN -->
+<!-- =========================
+     LO QUE ME ENCANTA
+========================= -->
 
-<section>
+<section class="reveal">
 
-<div class="contenido">
+    <div class="eyebrow">
+        03 · tú
+    </div>
 
-<div class="numero">
-05 — NUESTRA CANCIÓN
-</div>
+    <h2>
+        Hay tantas cosas<br>
+        que me encantan de ti.
+    </h2>
 
-<h2>
-No Te Imaginás
-</h2>
+    <p class="section-text">
+        Pero si tuviera que intentar explicarlo,
+        probablemente empezaría por estas.
+    </p>
 
-<div class="cancion">
+    <div class="cards">
 
-<h3>
-No Te Imaginás
-</h3>
+        <div class="card">
+            <div class="card-number">01</div>
+            <h3>Tu sonrisa</h3>
+            <p>
+                Porque tiene esa capacidad de hacer
+                que todo se sienta un poquito más bonito.
+            </p>
+        </div>
 
-<p>
-No Te Va Gustar
-</p>
+        <div class="card">
+            <div class="card-number">02</div>
+            <h3>Tu corazón</h3>
+            <p>
+                Ese corazón infinito que tienes
+                y la forma tan bonita en que quieres.
+            </p>
+        </div>
 
-<a
-href="https://www.youtube.com/watch?v=9e7_MzTR8oE"
-target="_blank"
-class="boton"
->
-▶ ESCUCHAR
-</a>
+        <div class="card">
+            <div class="card-number">03</div>
+            <h3>Tu cariño</h3>
+            <p>
+                Me encanta cómo das cariño
+                y también cómo sabes recibirlo.
+            </p>
+        </div>
 
-</div>
+        <div class="card">
+            <div class="card-number">04</div>
+            <h3>Tu carita</h3>
+            <p>
+                Podría mirarte muchísimo tiempo
+                y probablemente nunca me cansaría.
+            </p>
+        </div>
 
-<p class="texto">
+        <div class="card">
+            <div class="card-number">05</div>
+            <h3>Tu forma de ser</h3>
+            <p>
+                Cada pequeño detalle que te hace
+                ser exactamente tú.
+            </p>
+        </div>
 
-Hay canciones que simplemente suenan bien.
+        <div class="card">
+            <div class="card-number">06</div>
+            <h3>Todo de ti</h3>
+            <p>
+                Porque al final no es una sola cosa.
+                Me encanta todo lo que eres.
+            </p>
+        </div>
 
-Y hay canciones que empiezan
-a formar parte de una historia.
-
-</p>
-
-</div>
-
-</section>
-
-
-<!-- CARTA -->
-
-<section>
-
-<div class="contenido">
-
-<div class="numero">
-06 — PARA TI
-</div>
-
-<h2>
-Para mi pollito
-</h2>
-
-<div class="carta">
-
-<p>
-Me encanta estar contigo, pollito mío.
-No sabes lo feliz que me haces cada día.
-</p>
-
-<p>
-Me encanta poder compartir contigo,
-seguir conociéndote y descubrir cada día
-algo nuevo de ti.
-</p>
-
-<p>
-Me encanta tu sonrisa,
-tu corazón infinito,
-tu manera de demostrar cariño
-y también esa forma tan tuya
-de recibirlo.
-</p>
-
-<p>
-Me encanta tu carita hermosa,
-pero sobre todo me encanta todo lo que eres.
-</p>
-
-<p>
-Y aunque llevemos apenas un mes,
-me hace mucha ilusión pensar
-en todo lo que todavía nos queda
-por vivir juntos.
-</p>
-
-<p>
-Quiero seguir compartiendo contigo,
-seguir creando recuerdos,
-seguir estando para ti
-y caminar juntos por todo lo que venga.
-</p>
-
-<p>
-Porque cuando pienso en nosotros,
-no pienso solamente en este primer mes.
-
-Pienso en todos los capítulos
-que todavía nos quedan por escribir.
-</p>
-
-<p>
-Te quiero muchísimo,
-pollito mío. ❤️
-</p>
-
-<p>
-Feliz primer mes.
-</p>
-
-</div>
-
-</div>
+    </div>
 
 </section>
 
 
-<!-- SORPRESA -->
+<!-- =========================
+     DISTANCIA
+========================= -->
 
-<section>
+<section class="distance reveal">
 
-<div class="contenido">
+    <div class="eyebrow">
+        04 · a pesar de la distancia
+    </div>
 
-<div class="numero">
-07 — UNA PEQUEÑA SORPRESA
-</div>
+    <div class="names">
+        Fran
+        <span class="heart">♥</span>
+        Colomba
+    </div>
 
-<h2>
-¿Quieres abrirla?
-</h2>
+    <div class="distance-line"></div>
 
-<p class="texto">
-Pero después no digas que no te advertí...
-</p>
-
-<div class="sorpresa">
-
-<button class="boton" onclick="mostrarMensaje()">
-ABRIR 🎁
-</button>
-
-<div id="mensaje">
-
-Sabía que no ibas a poder resistirte... ❤️
-
-<br><br>
-
-Pero ya que llegaste hasta aquí...
-
-<br><br>
-
-<strong>
-Te quiero muchísimo, pollito mío.
-</strong>
-
-</div>
-
-</div>
-
-</div>
+    <p>
+        Puede que ahora mismo no podamos estar
+        físicamente juntos todos los días,
+        pero eso no cambia las ganas que tengo
+        de compartir mi vida contigo.
+        <br><br>
+        La distancia solamente hace que valore
+        todavía más cada abrazo, cada beso,
+        cada conversación y cada momento
+        que podamos tener juntos.
+    </p>
 
 </section>
 
 
-<!-- FINAL -->
+<!-- =========================
+     CANCIÓN
+========================= -->
 
-<section class="final">
+<section class="reveal">
 
-<div class="contenido">
+    <div class="eyebrow center">
+        05 · nuestra canción
+    </div>
 
-<div class="numero">
-08 — PRÓXIMO CAPÍTULO
-</div>
+    <h2 class="center">
+        Esta canción<br>
+        es para ti.
+    </h2>
 
-<h2>
-Esto recién comienza.
-</h2>
+    <div class="song-card">
 
-<p class="texto">
+        <div class="song-info">
 
-Todavía nos quedan muchas citas,
-muchos abrazos,
-muchos lugares por conocer
-y muchísimos recuerdos por crear.
+            <div class="song-title">
+                No Te Imaginás
+            </div>
 
-</p>
+            <div class="artist">
+                NO TE VA GUSTAR
+            </div>
 
-<div class="firma">
+        </div>
 
-Con amor,<br>
-Fran ❤️
+        <div class="video">
 
-</div>
+            <iframe
+                src="https://www.youtube.com/embed/9e7_MzTR8oE?rel=0"
+                title="No Te Imaginás - No Te Va Gustar"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+            </iframe>
 
-<div class="corazon">
-22 · 08 · 2026
-</div>
+        </div>
 
-</div>
+        <div style="text-align:center">
+
+            <a
+                class="youtube-button"
+                href="https://www.youtube.com/watch?v=9e7_MzTR8oE"
+                target="_blank">
+                ABRIR EN YOUTUBE ↗
+            </a>
+
+        </div>
+
+    </div>
 
 </section>
+
+
+<!-- =========================
+     CARTA
+========================= -->
+
+<section class="reveal">
+
+    <div class="eyebrow center">
+        06 · para ti
+    </div>
+
+    <h2 class="center">
+        Una pequeña carta<br>
+        para mi pollito.
+    </h2>
+
+    <div class="letter-box">
+
+        <div class="envelope">
+
+            <div class="envelope-icon">
+                ♡
+            </div>
+
+            <p>
+                Hay algunas cosas que quería decirte
+                y que merecían un lugar especial.
+            </p>
+
+            <button
+                class="open-letter"
+                onclick="openLetter()">
+                ABRIR CARTA
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     COSAS QUE QUIERO VIVIR
+========================= -->
+
+<section class="reveal">
+
+    <div class="eyebrow">
+        07 · nuestro futuro
+    </div>
+
+    <h2>
+        Todavía nos quedan<br>
+        demasiadas cosas por vivir.
+    </h2>
+
+    <p class="section-text">
+        Y sinceramente, me hace mucha ilusión pensar
+        en todo lo que todavía nos queda.
+    </p>
+
+    <div class="future">
+
+        <div class="future-item">
+            <span>🌙</span>
+            <h3>Más noches juntos</h3>
+            <p>
+                De esas en las que no importa la hora
+                porque simplemente queremos seguir hablando.
+            </p>
+        </div>
+
+        <div class="future-item">
+            <span>✈️</span>
+            <h3>Más aventuras</h3>
+            <p>
+                Conocer lugares nuevos,
+                perdernos juntos y crear recuerdos.
+            </p>
+        </div>
+
+        <div class="future-item">
+            <span>📸</span>
+            <h3>Más recuerdos</h3>
+            <p>
+                Fotos que algún día podamos mirar
+                y decir: “¿te acuerdas de esto?”
+            </p>
+        </div>
+
+        <div class="future-item">
+            <span>🫶</span>
+            <h3>Muchos abrazos</h3>
+            <p>
+                Porque después de la distancia,
+                cada uno va a sentirse todavía más especial.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SORPRESA
+========================= -->
+
+<section class="surprise reveal">
+
+    <div class="eyebrow">
+        08 · una última cosa
+    </div>
+
+    <h2>
+        Antes de irte...
+    </h2>
+
+    <p class="section-text center">
+        Hay algo que todavía no te he dicho.
+    </p>
+
+    <button
+        class="secret-button"
+        onclick="showSecret()">
+        DESCUBRIR ❤️
+    </button>
+
+    <div class="secret" id="secret">
+
+        <p>
+            Pollito, si pudiera elegir nuevamente
+            a alguien con quien compartir este capítulo,
+            te volvería a elegir a ti.
+            <br><br>
+            Y espero que este sea solamente
+            nuestro primer mes de muchos.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FINAL
+========================= -->
+
+<footer>
+
+    <div class="footer-big">
+        1 mes ❤️
+    </div>
+
+    <p>
+        22 · 08 · 2026
+    </p>
+
+    <br>
+
+    <p>
+        Con mucho amor, Fran.
+    </p>
+
+</footer>
+
+
+<!-- =========================
+     MODAL CARTA
+========================= -->
+
+<div class="modal" id="letterModal">
+
+    <div class="modal-content">
+
+        <button
+            class="close"
+            onclick="closeLetter()">
+            ×
+        </button>
+
+        <div class="letter-title">
+            Para mi pollito ❤️
+        </div>
+
+        <div class="letter-text">
+
+            Me encanta estar contigo, pollito mío.
+            No sabes lo feliz que me haces cada día.
+
+            <br><br>
+
+            Me encanta poder compartir mi vida contigo,
+            conocerte un poquito más cada día
+            y descubrir todas esas pequeñas cosas
+            que te hacen ser tú.
+
+            <br><br>
+
+            Me encanta tu sonrisa, tu corazón infinito,
+            la forma en que das cariño y también
+            la manera en que sabes recibirlo.
+
+            <br><br>
+
+            Y aunque ahora nos toque estar un poquito
+            lejos, quiero que sepas que la distancia
+            no cambia lo importante que eres para mí.
+
+            <br><br>
+
+            Quiero seguir compartiendo momentos contigo,
+            seguir riéndonos, seguir conociéndonos,
+            viajar, abrazarnos, crear recuerdos
+            y vivir muchísimas cosas juntos.
+
+            <br><br>
+
+            Quizás llevamos solamente un mes,
+            pero me hace muchísima ilusión pensar
+            en todo lo que todavía nos queda.
+
+            <br><br>
+
+            Gracias por llegar a mi vida
+            y hacerla un poquito más bonita.
+
+            <br><br>
+
+            Feliz primer mes, mi pollito.
+
+        </div>
+
+        <div class="signature">
+            Te quiero mucho.<br>
+            Fran ❤️
+        </div>
+
+    </div>
+
+</div>
 
 
 <script>
 
-function mostrarMensaje() {
+/* =========================
+   CONTADOR
+========================= */
 
-document.getElementById("mensaje").style.display = "block";
+const startDate =
+    new Date("2026-08-22T00:00:00-03:00");
+
+function updateCounter(){
+
+    const now = new Date();
+
+    let months =
+        (now.getFullYear() - startDate.getFullYear()) * 12 +
+        (now.getMonth() - startDate.getMonth());
+
+    let anniversary =
+        new Date(startDate);
+
+    anniversary.setMonth(
+        startDate.getMonth() + months
+    );
+
+    if(now < anniversary){
+
+        months--;
+
+        anniversary =
+            new Date(startDate);
+
+        anniversary.setMonth(
+            startDate.getMonth() + months
+        );
+    }
+
+    const difference =
+        now.getTime() - anniversary.getTime();
+
+    const day =
+        1000 * 60 * 60 * 24;
+
+    const hour =
+        1000 * 60 * 60;
+
+    const minute =
+        1000 * 60;
+
+    const days =
+        Math.floor(difference / day);
+
+    const hours =
+        Math.floor((difference % day) / hour);
+
+    const minutes =
+        Math.floor((difference % hour) / minute);
+
+    const seconds =
+        Math.floor((difference % minute) / 1000);
+
+    document.getElementById("months").textContent =
+        months;
+
+    document.getElementById("days").textContent =
+        days;
+
+    document.getElementById("hours").textContent =
+        hours;
+
+    document.getElementById("minutes").textContent =
+        minutes;
+
+    document.getElementById("seconds").textContent =
+        seconds;
+}
+
+updateCounter();
+
+setInterval(updateCounter,1000);
+
+
+/* =========================
+   SCROLL REVEAL
+========================= */
+
+const observer =
+    new IntersectionObserver(
+        entries => {
+
+            entries.forEach(entry => {
+
+                if(entry.isIntersecting){
+
+                    entry.target.classList.add("visible");
+
+                }
+
+            });
+
+        },
+        {
+            threshold:.12
+        }
+    );
+
+document
+    .querySelectorAll(".reveal")
+    .forEach(element => observer.observe(element));
+
+
+/* =========================
+   CARTA
+========================= */
+
+function openLetter(){
+
+    document
+        .getElementById("letterModal")
+        .classList.add("show");
+
+    document.body.style.overflow = "hidden";
+}
+
+function closeLetter(){
+
+    document
+        .getElementById("letterModal")
+        .classList.remove("show");
+
+    document.body.style.overflow = "";
+}
+
+document
+    .getElementById("letterModal")
+    .addEventListener("click", function(e){
+
+        if(e.target === this){
+
+            closeLetter();
+
+        }
+
+    });
+
+
+/* =========================
+   SECRET
+========================= */
+
+function showSecret(){
+
+    const secret =
+        document.getElementById("secret");
+
+    secret.classList.add("show");
+
+    secret.scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+    });
 
 }
 
